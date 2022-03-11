@@ -3,8 +3,20 @@ import React from "react";
 
 const Results = () => {
   return (
-    <div>
-      <p>RESULTS FROM SEARCH WOULD GO HERE???</p>
+    <div className="test1">
+      <div className="random">
+        <img alt="EVENT IMAGE" />
+        <div className="testest">
+          <div className="test">
+            <ul>
+              <li>EVENT TITLE</li>
+              <li>DATE</li>
+              <li>LOCATION</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button>BUY TICKETS</button>
     </div>
   );
 };

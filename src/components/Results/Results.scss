@@ -1,3 +1,37 @@
 @use "../../App.scss" as *;
 @use "../../partials/fonts";
 @use "../../partials/mixins";
+
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
+.test1 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+}
+
+.random {
+  display: flex;
+}
+
+.test3 {
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  list-style: none;
+  padding-left: 2rem;
+}
+
+.testest {
+  display: flex;
+}
+
+button {
+  width: 8rem;
+  margin-left: 3rem;
+}
