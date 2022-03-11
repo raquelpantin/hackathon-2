@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        "https://app.ticketmaster.com/discovery/v2/events.json?apikey=EdlG9SZrgmuxDIKgA5lqUxAi8qJpe3Fd"
+        `https://api.seatgeek.com/2/events?venue.city=${search}&client_id=MjYwNjMzOTV8MTY0NzAyNTU1Ny4xNTg2NA`
       )
       .then((response) => {
         console.log(response.data);
@@ -22,13 +22,9 @@ function App() {
     setSearch(e.target.value);
   };
 
-  // const postalCode = response.data._embedded.events[0]._embedded.venues[0].postalCode
-
-  const filterAffairs = affairs.filter((affair) => {
-    if (affair.name.toLowerCase().includes(search.toLowerCase())) {
-      return true;
-    }
-  });
+  // const filterAffairs = affairs.filter((affair) =>
+  //   affair.events[0].city.toLowerCase().includes(search.toLowerCase())
+  // );
 
   return (
     <div>
@@ -37,15 +33,13 @@ function App() {
         <form>
           <input
             type="text"
-            placeholder="Search by zip code"
+            placeholder="Search by City"
             onChange={handleChange}
           />
         </form>
       </header>
       <main>
-        {filterAffairs.map((affair) => {
-          return <SearchResults key={affair.id} name={affair.name} />;
-        })}
+        <SearchResults />;
       </main>
     </div>
   );
