@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        "https://api.seatgeek.com/2/events?client_id=MjYwNjMzOTV8MTY0NzAyNTU1Ny4xNTg2NA"
+        "https://api.seatgeek.com/2/events?per_page=1000&client_id=MjYwNjMzOTV8MTY0NzAyNTU1Ny4xNTg2NA"
       )
       .then((response) => {
         console.log(response.data);
@@ -33,7 +33,7 @@ function App() {
   return (
     <div>
       <header>
-        <h1>PROJECT TITLE HERE</h1>
+        <h1>TBD</h1>
         <form>
           <input
             type="text"
@@ -56,7 +56,14 @@ function App() {
             return false;
           })
           .map((affair) => (
-            <SearchResults name={affair.title} />
+            <SearchResults
+              name={affair.title}
+              date={affair.datetime_local}
+              location={affair.venue.name}
+              address={affair.venue.address}
+              image={affair.performers[0].image}
+              key={affair.id}
+            />
           ))}
       </main>
     </div>
