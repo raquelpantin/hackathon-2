@@ -9,17 +9,21 @@ function App() {
   useEffect(() => {
     axios
       .get(
-        `https://api.seatgeek.com/2/events?venue.city=${search}&client_id=MjYwNjMzOTV8MTY0NzAyNTU1Ny4xNTg2NA`
+        "https://api.seatgeek.com/2/events?client_id=MjYwNjMzOTV8MTY0NzAyNTU1Ny4xNTg2NA"
       )
       .then((response) => {
         console.log(response.data);
-        setAffairs(response.data);
+        setAffairs(response.data.events);
       })
       .catch((error) => console.log(error));
-  });
+  }, []);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
+
+    // affairs.filter((affair) =>
+    //   affair.venue.city.toLowerCase().includes(search.toLowerCase())
+    // );
   };
 
   // const filterAffairs = affairs.filter((affair) =>
@@ -39,7 +43,21 @@ function App() {
         </form>
       </header>
       <main>
-        <SearchResults />;
+        {affairs
+          .filter((affair) => {
+            if (!search) {
+              return true;
+            }
+            if (
+              affair.venue.city.toLowerCase().includes(search.toLowerCase())
+            ) {
+              return true;
+            }
+            return false;
+          })
+          .map((affair) => (
+            <SearchResults name={affair.title} />
+          ))}
       </main>
     </div>
   );
