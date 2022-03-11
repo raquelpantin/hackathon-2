@@ -32,10 +32,11 @@ function App() {
 
   return (
     <div>
-      <header>
-        <h1>TBD</h1>
+      <header className="header">
+        <h1 className="header__title">TBD</h1>
         <form>
           <input
+            className="header__searchbar"
             type="text"
             placeholder="Search by City"
             onChange={handleChange}
