@@ -4,7 +4,7 @@ import "./App.scss";
 import SearchResults from "./components/Results/Results";
 
 function App() {
-  const [events, setEvents] = useState([]);
+  const [affairs, setAffairs] = useState([]);
   const [search, setSearch] = useState("");
   useEffect(() => {
     axios
@@ -13,7 +13,7 @@ function App() {
       )
       .then((response) => {
         console.log(response.data);
-        setEvents(response.data);
+        setAffairs(response.data);
       })
       .catch((error) => console.log(error));
   });
@@ -24,24 +24,28 @@ function App() {
 
   // const postalCode = response.data._embedded.events[0]._embedded.venues[0].postalCode
 
-  // const filterEvents = events.filter((event) => {
-  //   if (
-  //     event.response.data._embedded.events[0]._embedded.venues[0].postalCode
-  //   ) {
-  //     return true;
-  //   }
-  // });
+  const filterAffairs = affairs.filter((affair) => {
+    if (affair.name.toLowerCase().includes(search.toLowerCase())) {
+      return true;
+    }
+  });
 
   return (
     <div>
       <header>
         <h1>PROJECT TITLE HERE</h1>
         <form>
-          <input type="text" placeholder="Search by zip code" />
+          <input
+            type="text"
+            placeholder="Search by zip code"
+            onChange={handleChange}
+          />
         </form>
       </header>
       <main>
-        <SearchResults />;
+        {filterAffairs.map((affair) => {
+          return <SearchResults key={affair.id} name={affair.name} />;
+        })}
       </main>
     </div>
   );

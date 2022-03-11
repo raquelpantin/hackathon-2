@@ -1,7 +1,7 @@
 import "./Results.scss";
 import React from "react";
 
-const Results = () => {
+const Results = ({ name }) => {
   return (
     <div className="test1">
       <div className="random">
@@ -9,7 +9,7 @@ const Results = () => {
         <div className="testest">
           <div className="test">
             <ul>
-              <li>EVENT TITLE</li>
+              <li>{name}</li>
               <li>DATE</li>
               <li>LOCATION</li>
             </ul>
